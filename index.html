@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Password Strength Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="tool-panel" aria-labelledby="page-title">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">Local security tool</p>
+            <h1 id="page-title">Password Strength Analyzer</h1>
+          </div>
+          <div class="privacy-chip" title="Runs in your browser only">
+            <span aria-hidden="true"></span>
+            Local only
+          </div>
+        </div>
+
+        <div class="input-grid">
+          <label class="password-field" for="password-input">
+            <span>Password</span>
+            <div class="password-control">
+              <input
+                id="password-input"
+                type="password"
+                autocomplete="new-password"
+                spellcheck="false"
+                aria-describedby="score-summary"
+              >
+              <button class="icon-button" type="button" id="toggle-visibility" aria-label="Show password" title="Show password">
+                <span class="eye-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+          </label>
+
+          <div class="action-row" aria-label="Password actions">
+            <button class="primary-button" type="button" id="generate-password">Generate Strong Password</button>
+            <button class="secondary-button" type="button" id="remember-password">Remember Hash</button>
+          </div>
+        </div>
+
+        <section class="score-section" aria-live="polite">
+          <div class="score-header">
+            <div>
+              <p class="metric-label">Strength</p>
+              <p class="score-title" id="score-title">Waiting for password</p>
+            </div>
+            <div class="score-value" id="score-value">0</div>
+          </div>
+          <div class="meter" aria-hidden="true">
+            <span id="meter-fill"></span>
+          </div>
+          <p id="score-summary" class="summary-text">Enter a password to analyze length, complexity, uniqueness, and reuse.</p>
+        </section>
+
+        <section class="results-grid" aria-label="Password results">
+          <article class="result-panel">
+            <div class="panel-heading">
+              <h2>Checks</h2>
+            </div>
+            <ul class="check-list" id="check-list"></ul>
+          </article>
+
+          <article class="result-panel">
+            <div class="panel-heading">
+              <h2>Suggestions</h2>
+            </div>
+            <ul class="suggestion-list" id="suggestion-list"></ul>
+          </article>
+
+          <article class="result-panel">
+            <div class="panel-heading">
+              <h2>Reuse Memory</h2>
+              <button class="text-button" type="button" id="clear-history">Clear</button>
+            </div>
+            <div class="memory-status">
+              <span id="history-count">0</span>
+              <p>Stored as salted SHA-256 hashes in this browser.</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="generated-panel" aria-labelledby="generated-title">
+          <div class="panel-heading">
+            <h2 id="generated-title">Strong Alternatives</h2>
+          </div>
+          <div class="alternative-list" id="alternative-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
